@@ -2,10 +2,28 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class ActivityIndicator extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      shouldDisplayIndicator: false
+    }
+  }
+
+  componentDidMount () {
+    this._timer = setTimeout(() => {
+      this.setState({shouldDisplayIndicator: true})
+    }, 200)
+  }
+
   render () {
-    return this.props.isLoading
-      ? null
-      : this.props.children
+    if (this.props.isLoading) {
+      return this.state.shouldDisplayIndicator
+        ? <div>Loading...</div>
+        : null
+    } else {
+      return this.props.children
+    }
   }
 }
 

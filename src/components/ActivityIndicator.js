@@ -16,6 +16,10 @@ export default class ActivityIndicator extends Component {
     }, 200)
   }
 
+  componentWillUnmount () {
+    clearTimeout(this._timer)
+  }
+
   render () {
     if (this.props.isLoading) {
       return this.state.shouldDisplayIndicator

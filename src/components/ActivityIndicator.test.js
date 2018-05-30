@@ -56,4 +56,21 @@ describe('ActivityIndicator', () => {
       })
     })
   })
+
+  describe('on unmount', () => {
+    it('should clear timeout', () => {
+      jest.useFakeTimers()
+      const mockTimerValue = 360
+      setTimeout.mockReturnValue(mockTimerValue)
+
+      const wrapper = mount(
+        <ActivityIndicator isLoading>
+          <div>Hello</div>
+        </ActivityIndicator>
+      )
+      wrapper.unmount()
+      expect(clearTimeout.mock.calls.length).toEqual(1)
+      expect(clearTimeout.mock.calls[0][0]).toEqual(mockTimerValue)
+    })
+  })
 })

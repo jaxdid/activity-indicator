@@ -46,6 +46,10 @@ describe('ActivityIndicator', () => {
             <div>Hello</div>
           </ActivityIndicator>
         )
+
+        expect(setTimeout.mock.calls.length).toEqual(1)
+        expect(setTimeout.mock.calls[0][1]).toEqual(200)
+
         jest.runAllTimers()
         expect(wrapper.html()).toEqual('<div>Loading...</div>')
         wrapper.unmount()

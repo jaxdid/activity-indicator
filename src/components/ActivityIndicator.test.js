@@ -37,5 +37,19 @@ describe('ActivityIndicator', () => {
         wrapper.unmount()
       })
     })
+
+    describe('given that 200ms have passed', () => {
+      it('should render activity indicator', () => {
+        jest.useFakeTimers()
+        const wrapper = mount(
+          <ActivityIndicator isLoading>
+            <div>Hello</div>
+          </ActivityIndicator>
+        )
+        jest.runAllTimers()
+        expect(wrapper.html()).toEqual('<div>Loading...</div>')
+        wrapper.unmount()
+      })
+    })
   })
 })

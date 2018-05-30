@@ -24,4 +24,18 @@ describe('ActivityIndicator', () => {
       wrapper.unmount()
     })
   })
+
+  describe('when isLoading is true', () => {
+    describe('given that 200ms have not yet passed', () => {
+      it('should render nothing', () => {
+        const wrapper = mount(
+          <ActivityIndicator isLoading>
+            <div>Hello</div>
+          </ActivityIndicator>
+        )
+        expect(wrapper.html()).toBe(null)
+        wrapper.unmount()
+      })
+    })
+  })
 })
